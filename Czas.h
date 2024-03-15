@@ -4,21 +4,17 @@
 
 class Czas {
 private:
-    short sekundy;
-    short minuty;
-    int godziny;
+    long sekundy;
 
     void SetSekundy(long sekundy);
-    void SetMinuty(short minuty);
-    void SetGodziny(int godziny);
     void UstawCzas(int godziny, short minuty, short sekundy);
     void UstawCzas(short minuty, short sekundy);
 
     void AddSekundy(long sekundy);
-    void AddMinuty(short minuty);
 
 public:
-    Czas(int godziny, short minuty, short sekundy);
+    Czas();
+    explicit Czas(int godziny, short minuty, short sekundy);
     explicit Czas(short minuty, short sekundy);
     explicit Czas(long sekundy);
 
@@ -28,26 +24,24 @@ public:
 
 
     void WypiszCzas();
-
     unsigned long IlośćSekundWCzasie();
 
-    friend bool operator == (Czas & C1, Czas & C2);
+    //operatory
+    friend bool operator == (Czas& C1, Czas& C2);
 
-    friend bool operator < (Czas & C1, Czas & C2);
+    friend bool operator < (Czas& C1, Czas& C2);
 
-    friend bool operator > (Czas & C1, Czas & C2);
+    friend bool operator > (Czas& C1, Czas& C2);
 
-    friend bool operator <= (Czas & C1, Czas & C2);
+    friend bool operator <= (Czas& C1, Czas& C2);
 
-    friend bool operator >= (Czas & C1, Czas & C2);
+    friend bool operator >= (Czas& C1, Czas& C2);
 
-    friend bool operator != (Czas & C1, Czas & C2);
+    friend bool operator != (Czas& C1, Czas& C2);
 
+    friend Czas operator + (Czas& C1, Czas& C2);
 
-    friend Czas operator + (Czas & C1, Czas & C2);
-
-    friend Czas operator += (Czas & C1, Czas & C2);
-
+    Czas operator += (Czas& C2);
 };
 
 
