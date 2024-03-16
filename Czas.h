@@ -4,7 +4,7 @@
 
 class Czas {
 private:
-    long sekundy;
+    unsigned long sekundy;
 
     void SetSekundy(long sekundy);
     void UstawCzas(int godziny, short minuty, short sekundy);

@@ -11,17 +11,18 @@ public:
     Harmonogram();
     Harmonogram(const Harmonogram& h);
     Harmonogram(const Harmonogram& h, int n);
+    Harmonogram(const Harmonogram& h, Czas& c);
     ~Harmonogram();
 
     void dodajZadanie(Czas c);
     void usunZadanie(int index);
-
+// z zadania
     int Wielkość();
 
     Czas& operator[](int index);
 
     void Wypisz();
-
+// z zadania
     Czas Sumuj();
 };
 

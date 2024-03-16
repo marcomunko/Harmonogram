@@ -2,7 +2,6 @@
 #include <cmath>
 #include <iostream>
 
-using namespace std;
 
 Czas::Czas() {
     sekundy = 0;
@@ -12,7 +11,7 @@ Czas::Czas(int godziny, short minuty, short sekundy)
 {
     UstawCzas(godziny,minuty,sekundy);
 }
-
+//z zadania
 Czas::Czas(short minuty, short sekundy) {
     UstawCzas(minuty,sekundy);
 }
@@ -51,7 +50,10 @@ short Czas::GetSekundy() {
 }
 
 void Czas::WypiszCzas() {
-    cout << GetGodziny() << ":" << GetMinuty() << ":" << GetSekundy() << endl;
+    std::cout << (GetGodziny() < 10? "0" : "") << GetGodziny()
+    << ":" << (GetMinuty() < 10 ? "0" : "" ) << GetMinuty()
+    << ":" << (GetSekundy() < 10? "0" : "") << GetSekundy()
+    << std::endl;
 }
 
 void Czas::AddSekundy(long sekundy) {
