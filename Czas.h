@@ -14,9 +14,9 @@ private:
 
 public:
     Czas();
-    explicit Czas(int godziny, short minuty, short sekundy);
-    explicit Czas(short minuty, short sekundy);
-    explicit Czas(long sekundy);
+    Czas(int godziny, short minuty, short sekundy);
+    Czas(short minuty, short sekundy);
+    Czas(long sekundy);
 
     short GetSekundy();
     short GetMinuty();
@@ -27,21 +27,23 @@ public:
     unsigned long IlośćSekundWCzasie();
 
     //operatory
-    friend bool operator == (Czas& C1, Czas& C2);
+    bool operator == (Czas& C2);
 
-    friend bool operator < (Czas& C1, Czas& C2);
+    bool operator < (Czas& C2);
 
-    friend bool operator > (Czas& C1, Czas& C2);
+    bool operator > (Czas& C2);
 
-    friend bool operator <= (Czas& C1, Czas& C2);
+    bool operator <= (Czas& C2);
 
-    friend bool operator >= (Czas& C1, Czas& C2);
+    bool operator >= ( Czas& C2);
 
-    friend bool operator != (Czas& C1, Czas& C2);
+    bool operator != (Czas& C2);
 
-    friend Czas operator + (Czas& C1, Czas& C2);
+    Czas operator + (Czas& C2);
 
-    Czas operator += (Czas& C2);
+    Czas& operator += (Czas& C2);
+
+    Czas& operator -= (Czas& C2);
 };
 
 

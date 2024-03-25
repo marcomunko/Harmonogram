@@ -52,8 +52,10 @@ int main() {
         std::cout << "1. Dodaj czynność\n"
         << "2. Wypisz harmonogram\n"
         << "3. Usuń czynność\n"
-        << "4. Test operatorów\n"
-        << "5. Zakończ\n";
+        << "4. Edytuj czas\n"
+        << "5. Wypisz sumę czasu w harmonogramie\n"
+        << "6. Test operatorów\n"
+        << "7. Zakończ\n";
         std::cout << "> ";
 
         int wybor;
@@ -138,9 +140,87 @@ int main() {
                     break;
                 }
 
+
+                if (numer < 1 || numer > har.Wielkość()) {
+                    std::cout << "Numer poza zakresem\n";
+                    break;
+                }
+
                 har.usunZadanie(--numer);
                 break;
-            case 4:{
+            case 4:
+                std::cout << "Podaj numer czynności do edycji: ";
+                int index;
+                std::cin >> index;
+
+                if (std::cin.fail()) {
+                    std::cout << "Błędne dane\n";
+                    std::cin.clear();
+                    std::cin.ignore(256, '\n');
+                    break;
+                }
+                index--;
+
+                if (index < 0 || index >= har.Wielkość()) {
+                    std::cout << "Numer poza zakresem\n";
+                    break;
+                }
+
+                std::cout << "1. Dodaj czas\n"
+                          << "2. Odejmij czas\n"
+                          << "3. Zmień czas\n";
+
+                std::cout << "> ";
+                int wybor3;
+                std::cin >> wybor3;
+
+                if (std::cin.fail()) {
+                    std::cout << "Błędne dane\n";
+                    std::cin.clear();
+                    std::cin.ignore(256, '\n');
+                    break;
+                }
+
+                switch (wybor3) {
+                    case 1: {
+                        try {
+                            auto c = CzasUżytkownika();
+                            har[index] += c;
+                        } catch (std::exception e) {
+                            std::cout << "Nieprawidłowy format czasu\n";
+                            break;
+                        }
+                        break;
+                    }
+                    case 2: {
+                        try {
+                            auto c = CzasUżytkownika();
+                            har[index] -= c;
+                        } catch (std::exception e) {
+                            std::cout << "Nieprawidłowy format czasu\n";
+                            break;
+                        }
+                        break;
+                    }
+                    case 3: {
+                        try {
+                            auto c = CzasUżytkownika();
+                            har[index] = c;
+                        } catch (std::exception e) {
+                            std::cout << "Nieprawidłowy format czasu\n";
+                            break;
+                        }
+                        break;
+                    }
+                    default:
+                        std::cout << "Komenda poza zakresem\n";
+                        break;
+                }
+                break;
+            case 5:
+                har.Sumuj().WypiszCzas();
+                break;
+            case 6:{
                 std::cout << "Testowane czasy:\n";
                 Czas h1;
                 Czas h2;
@@ -162,7 +242,7 @@ int main() {
                 std::cout << "===========================\n";
                 break;
             }
-            case 5:
+            case 7:
                 working = false;
                 break;
             default:

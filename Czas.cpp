@@ -11,7 +11,7 @@ Czas::Czas(int godziny, short minuty, short sekundy)
 {
     UstawCzas(godziny,minuty,sekundy);
 }
-//z zadania
+
 Czas::Czas(short minuty, short sekundy) {
     UstawCzas(minuty,sekundy);
 }
@@ -67,36 +67,41 @@ unsigned long Czas::IlośćSekundWCzasie() {
     return sekundy;
 }
 
-bool operator == (Czas& C1, Czas& C2){
-    return C1.IlośćSekundWCzasie() == C2.IlośćSekundWCzasie();
+bool Czas::operator == (Czas& C2){
+    return IlośćSekundWCzasie() == C2.IlośćSekundWCzasie();
 }
 
-bool operator < (Czas& C1, Czas& C2){
-    return C1.IlośćSekundWCzasie() < C2.IlośćSekundWCzasie();
+bool Czas::operator < (Czas& C2){
+    return IlośćSekundWCzasie() < C2.IlośćSekundWCzasie();
 }
 
-bool operator > (Czas& C1, Czas& C2){
-    return C1.IlośćSekundWCzasie() > C2.IlośćSekundWCzasie();
+bool Czas::operator > (Czas& C2){
+    return IlośćSekundWCzasie() > C2.IlośćSekundWCzasie();
 }
 
-bool operator <= (Czas& C1, Czas& C2){
-    return C1.IlośćSekundWCzasie() <= C2.IlośćSekundWCzasie();
+bool Czas::operator <= ( Czas& C2){
+    return IlośćSekundWCzasie() <= C2.IlośćSekundWCzasie();
 }
 
-bool operator >= (Czas& C1, Czas& C2){
-    return C1.IlośćSekundWCzasie() >= C2.IlośćSekundWCzasie();
+bool Czas::operator >= ( Czas& C2){
+    return IlośćSekundWCzasie() >= C2.IlośćSekundWCzasie();
 }
 
-bool operator != (Czas& C1, Czas& C2){
-    return C1.IlośćSekundWCzasie() != C2.IlośćSekundWCzasie();
+bool Czas::operator != ( Czas& C2){
+    return IlośćSekundWCzasie() != C2.IlośćSekundWCzasie();
 }
 
-Czas operator + (Czas& C1, Czas& C2){
-    Czas c(C1.IlośćSekundWCzasie() + C2.IlośćSekundWCzasie());
+Czas Czas::operator + ( Czas& C2){
+    Czas c(IlośćSekundWCzasie() + C2.IlośćSekundWCzasie());
     return c;
 }
 
-Czas Czas::operator+= (Czas& C2){
+Czas& Czas::operator += (Czas& C2){
     AddSekundy(C2.IlośćSekundWCzasie());
+    return *this;
+}
+
+Czas &Czas::operator-=(Czas &C2) {
+    AddSekundy(-C2.IlośćSekundWCzasie());
     return *this;
 }
