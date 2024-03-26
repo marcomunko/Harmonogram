@@ -17,6 +17,7 @@ public:
     Czas(int godziny, short minuty, short sekundy);
     Czas(short minuty, short sekundy);
     Czas(long sekundy);
+    ~Czas()= default;
 
     short GetSekundy();
     short GetMinuty();
@@ -41,9 +42,11 @@ public:
 
     Czas operator + (Czas& C2);
 
-    Czas& operator += (Czas& C2);
+    Czas& operator += (const Czas& C2);
 
-    Czas& operator -= (Czas& C2);
+    Czas& operator -= (const Czas& C2);
+
+    Czas& operator = (const Czas& C2);
 };
 
 

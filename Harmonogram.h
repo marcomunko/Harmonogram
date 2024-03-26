@@ -9,8 +9,11 @@ private:
     int rozmiar;
 public:
     Harmonogram();
+    // konstruktor kopiujący
     Harmonogram(const Harmonogram& h);
+    // konstruktor kopiujący daną ilość indeksów w tablicy
     Harmonogram(const Harmonogram& h, int n);
+    // konstruktor kopiujący wartości z tablicy, które mieszczą się w czasie c
     Harmonogram(const Harmonogram& h, Czas& c);
     ~Harmonogram();
 

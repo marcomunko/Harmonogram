@@ -36,6 +36,18 @@ Czas CzasUżytkownika(){
     return Czas(h, m, s);
 }
 
+int IntUżytkownika(const char* msg){
+    std::cout << msg;
+    int n;
+    std::cin >> n;
+    if (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(256, '\n');
+        throw std::exception();
+    }
+    return n;
+}
+
 int main() {
     //zmuszenie konsoli do używania utf8 (Windows)
     system("chcp 65001");
@@ -110,15 +122,14 @@ int main() {
                         break;
                     }
                     case 3: {
-                        std::cout << "Podaj ilość czynności: ";
                         int ilosc;
-                        std::cin >> ilosc;
-                        if (std::cin.fail()) {
+                        try {
+                            ilosc = IntUżytkownika("Podaj ilość czynności: ");
+                        } catch (std::exception e) {
                             std::cout << "Błędne dane\n";
-                            std::cin.clear();
-                            std::cin.ignore(256, '\n');
                             break;
                         }
+
                         Harmonogram h1(har, ilosc);
                         h1.Wypisz();
                         break;
@@ -129,17 +140,13 @@ int main() {
                 }
                 break;
             case 3:
-                std::cout << "Podaj numer czynności do usunięcia: ";
                 int numer;
-                std::cin >> numer;
-
-                if (std::cin.fail()) {
+                try {
+                    numer = IntUżytkownika("Podaj indeks czynności: ");
+                } catch (std::exception e) {
                     std::cout << "Błędne dane\n";
-                    std::cin.clear();
-                    std::cin.ignore(256, '\n');
                     break;
                 }
-
 
                 if (numer < 1 || numer > har.Wielkość()) {
                     std::cout << "Numer poza zakresem\n";
@@ -149,14 +156,11 @@ int main() {
                 har.usunZadanie(--numer);
                 break;
             case 4:
-                std::cout << "Podaj numer czynności do edycji: ";
                 int index;
-                std::cin >> index;
-
-                if (std::cin.fail()) {
+                try {
+                    index = IntUżytkownika("Podaj indeks czynności: ");
+                } catch (std::exception e) {
                     std::cout << "Błędne dane\n";
-                    std::cin.clear();
-                    std::cin.ignore(256, '\n');
                     break;
                 }
                 index--;
@@ -168,7 +172,9 @@ int main() {
 
                 std::cout << "1. Dodaj czas\n"
                           << "2. Odejmij czas\n"
-                          << "3. Zmień czas\n";
+                          << "3. Zmień czas\n"
+                          << "4. Dodaj sekundy\n"
+                          << "5. Odejmij sekundy\n";
 
                 std::cout << "> ";
                 int wybor3;
@@ -210,6 +216,30 @@ int main() {
                             std::cout << "Nieprawidłowy format czasu\n";
                             break;
                         }
+                        break;
+                    }
+                    case 4: {
+                        int sekundy;
+                        try {
+                            sekundy = IntUżytkownika("Podaj ilość sekund: ");
+                        } catch (std::exception e) {
+                            std::cout << "Błędne dane\n";
+                            break;
+                        }
+
+                        har[index] += Czas(sekundy);
+                        break;
+                    }
+                    case 5: {
+                        int sekundy;
+                        try {
+                            sekundy = IntUżytkownika("Podaj ilość sekund do usunięcia: ");
+                        } catch (std::exception e) {
+                            std::cout << "Błędne dane\n";
+                            break;
+                        }
+
+                        har[index] -= Czas(sekundy);
                         break;
                     }
                     default:

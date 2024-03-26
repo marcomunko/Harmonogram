@@ -96,12 +96,17 @@ Czas Czas::operator + ( Czas& C2){
     return c;
 }
 
-Czas& Czas::operator += (Czas& C2){
-    AddSekundy(C2.IlośćSekundWCzasie());
+Czas &Czas::operator = (const Czas &C2) {
+    sekundy = C2.sekundy;
     return *this;
 }
 
-Czas &Czas::operator-=(Czas &C2) {
-    AddSekundy(-C2.IlośćSekundWCzasie());
+Czas& Czas::operator += (const Czas& C2){
+    AddSekundy(C2.sekundy);
+    return *this;
+}
+
+Czas& Czas::operator-=(const Czas &C2) {
+    AddSekundy(-C2.sekundy);
     return *this;
 }
